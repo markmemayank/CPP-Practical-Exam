@@ -10,85 +10,61 @@ c) Transpose
 #include <bits/stdc++.h>
 using namespace std;
 
-class Mat
-{
+class Matrix{
 public:
-    void for_sum(int mat1[3][3], int mat2[3][3])
-    {
-        int mat3[3][3];
-        cout << "The addition of the two matrices :- \n";
-        // sum up the matrices
-        for (int i = 0; i < 3; i++)
-        {
-            for (int j = 0; j < 3; j++)
-            {
-                mat3[i][j] = mat1[i][j] + mat2[i][j];
+    void transpose(int matrix[3][3]){
+
+        cout << "The Transpose matrix is: \n";
+        for (int i = 1; i < 3; i++){
+            for (int j = 0; j < i; j++){
+                swap(matrix[i][j], matrix[j][i]);
             }
         }
-        // print the sum of matrices
-        for (int i = 0; i < 3; i++)
-        {
-            for (int j = 0; j < 3; j++)
-            {
-                cout << mat3[i][j] << " ";
+
+        for (int i = 0; i < 3; i++){
+            for (int j = 0; j < 3; j++){
+                cout << matrix[i][j] << " ";
+            }
+            cout << endl;
+        }
+        
+    }
+
+    void sum(int matrix1[3][3], int matrix2[3][3]){
+        int matrix3[3][3];
+        cout << "The addition of the two matrixes : \n";
+        for (int i = 0; i < 3; i++){
+            for (int j = 0; j < 3; j++){
+                matrix3[i][j] = matrix1[i][j] + matrix2[i][j];
+            }
+        }
+        for (int i = 0; i < 3; i++){
+            for (int j = 0; j < 3; j++){
+                cout << matrix3[i][j] << " ";
             }
             cout << endl;
         }
         system("pause");
     }
 
+    void product(int matrix1[3][3], int matrix2[3][3]){
+        int matrix3[3][3];
+        int sum = 0;
+        cout << "The multiplication of the two matrices: \n";
 
-
-    void for_product(int mat1[3][3], int mat2[3][3])
-    {
-        int mat3[3][3];
-        int prod = 0;
-        cout << "The multiplication of the two matrices is :- \n";
-        // multiply two matrices
-        for (int i = 0; i < 3; i++)
-        {
-            for (int j = 0; j < 3; j++)
-            {
-                prod = 0;
-                for (int k = 0; k < 3; k++)
-                {
-                    prod += mat1[i][k] * mat2[k][j];
+        for (int i = 0; i < 3; i++){
+            for (int j = 0; j < 3; j++){
+                sum = 0;
+                for (int k = 0; k < 3; k++){
+                    sum += matrix1[i][k] * matrix2[k][j];
                 }
-                mat3[i][j] = prod;
+                matrix3[i][j] = sum;
             }
         }
-        // print the product of matrices
-        for (int i = 0; i < 3; i++)
-        {
-            for (int j = 0; j < 3; j++)
-            {
-                cout << mat3[i][j] << " ";
-            }
-            cout << endl;
-        }
-        system("pause");
-    }
 
-
-
-    void for_transpose(int mat[3][3])
-    {
-
-        cout << "The Transpose of the matrix you selected is : " << endl;
-        // to make the transpose of matrix
-        for (int i = 1; i < 3; i++)
-        {
-            for (int j = 0; j < i; j++)
-            {
-                swap(mat[i][j], mat[j][i]);
-            }
-        }
-        // print the transposed matrix
-        for (int i = 0; i < 3; i++)
-        {
-            for (int j = 0; j < 3; j++)
-            {
-                cout << mat[i][j] << " ";
+        for (int i = 0; i < 3; i++){
+            for (int j = 0; j < 3; j++){
+                cout << matrix3[i][j] << " ";
             }
             cout << endl;
         }
@@ -96,63 +72,59 @@ public:
     }
 };
 
-int main()
-{
-    Mat obj;
+int main(){
+    Matrix obj;
 
-    int mat1[3][3], mat2[3][3];
+    int matrix1[3][3], matrix2[3][3];
 
-    cout << "Enter the elements for matrix 1 :- " << endl;
-    // valuation of matrix 1
-    for (int i = 0; i < 3; i++)
-    {
-        for (int j = 0; j < 3; j++)
-        {
-            cin >> mat1[i][j];
+    cout << "Enter the matrix 1 elements:" << endl;
+    for (int i = 0; i < 3; i++){
+        for (int j = 0; j < 3; j++){
+            cin >> matrix1[i][j];
         }
     }
-    cout << "Enter the elements for matrix 2 :-" << endl;
-    // valuation of matrix 2
-    for (int i = 0; i < 3; i++)
-    {
+    cout << "Enter the matrix 2 elements" << endl;
+    for (int i = 0; i < 3; i++){
         for (int j = 0; j < 3; j++)
         {
-            cin >> mat2[i][j];
+            cin >> matrix2[i][j];
         }
     }
 
-    unsigned val;
+    unsigned choice;
 
-    while (1)
-    {
+    while (1){
         system("cls");
-        cout << "Type 1 to get the Sum of matrix 1 and matrix 2 " << endl;
-        cout << "Type 2 to get the Product of matrix 1 and matrix 2." << endl;
-        cout << "Type 3 to get the Transpose of matrix 1 and matrix 2." << endl;
-        cout << "Enter any other value to exit." << endl;
-        cin >> val;
+        cout << "Enter 1 to get the Sum of matrix1 and matrix2. \n";
+        cout << "Enter 2 to get the Product of matrix1 and matrix2.  \n";
+        cout << "Enter 3 to get the Transpose of matrix1 and matrix2.  \n";
+        cout << "Enter 4 to exit. \n";
+        cin >> choice;
 
-        switch (val)
-        {
+        switch (choice){
         case 1:
-            obj.for_sum(mat1, mat2);
+            obj.sum(matrix1, matrix2);
             break;
-
         case 2:
-            obj.for_product(mat1, mat2);
+            obj.product(matrix1, matrix2);
             break;
-
         case 3:
-            unsigned int key;
-            cout << "Press 1 for matrix 1 and 2 for matrix 2 : ";
-            cin >> key;
-
-            if (key == 1)
-                obj.for_transpose(mat1);
-            else if (key == 2)
-                obj.for_transpose(mat2);
-
+        	cout<<"For matrix one:";
+            obj.transpose(matrix1);
+            cout<<"For matrix two:";
+            obj.transpose(matrix2);
+            system("pause");
             break;
+        case 4:
+        	return 0;
+        default:
+            cout<<"Invalid option";
+            break;
+        }
+    }
+
+    return 0;
+}
 
         default:
             return 0;
