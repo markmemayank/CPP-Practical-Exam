@@ -6,86 +6,84 @@ the functions if matrices passed to them are incompatible and handled by main() 
 #include <bits/stdc++.h>
 using namespace std;
 
-class Mat
+class Matrix
 {
 public:
-
-    void for_sum(vector<vector<int>> mat1, vector<vector<int>> mat2)
+    void transpose(vector<vector<int> > matrix)
     {
-        vector<vector<int>> mat3;
-        cout << "The addition of the two matrices : \n";
-        for (int i = 0; i < mat1.size(); i++)
+
+        for (int i = 1; i < matrix.size(); i++)
+        {
+            for (int j = 0; j < matrix[i].size(); j++)
+            {
+                swap(matrix[i][j], matrix[j][i]);
+            }
+        }
+
+        cout << "The Transpose matrix is: \n";
+        for (int i = 0; i < matrix.size(); i++)
+        {
+            for (int j = 0; j < matrix[i].size(); j++)
+            {
+                cout << matrix[i][j] << " ";
+            }
+            cout << endl;
+        }
+    }
+
+    void sum(vector<vector<int> > matrix1, vector<vector<int> > matrix2)
+    {
+        vector<vector<int> > matrix3;
+        cout << "The addition of the two matrixes : \n";
+        for (int i = 0; i < matrix1.size(); i++)
         {
             vector<int> temp;
-            for (int j = 0; j < mat1[i].size(); j++)
+            for (int j = 0; j < matrix1[i].size(); j++)
             {
                 int var;
-                var = mat1[i][j] + mat2[i][j];
+                var = matrix1[i][j] + matrix2[i][j];
                 temp.push_back(var);
             }
-            mat3.push_back(temp);
+            matrix3.push_back(temp);
         }
 
-        for (int i = 0; i < mat3.size(); i++)
+        for (int i = 0; i < matrix3.size(); i++)
         {
-            for (int j = 0; j < mat3[i].size(); j++)
+            for (int j = 0; j < matrix3[i].size(); j++)
             {
-                cout << mat3[i][j] << " ";
+                cout << matrix3[i][j] << " ";
             }
             cout << endl;
         }
         system("pause");
     }
 
-    void for_product(vector<vector<int>> mat1, vector<vector<int>> mat2)
+    void product(vector<vector<int> > matrix1, vector<vector<int> > matrix2)
     {
-        vector<vector<int>> mat3;
-        int prod = 0;
+        vector<vector<int> > matrix3;
+        int sum = 0;
         cout << "The multiplication of the two matrices: \n";
 
-        for (int i = 0; i < mat1.size(); i++)
+        for (int i = 0; i < matrix1.size(); i++)
         {
             vector<int> temp;
-            for (int j = 0; j < mat2.size(); j++)
+            for (int j = 0; j < matrix2.size(); j++)
             {
-                prod = 0;
-                for (int k = 0; k < mat1[i].size(); k++)
+                sum = 0;
+                for (int k = 0; k < matrix1[i].size(); k++)
                 {
-                    prod += mat1[i][k] * mat2[k][j];
+                    sum += matrix1[i][k] * matrix2[k][j];
                 }
-                temp.push_back(prod);
+                temp.push_back(sum);
             }
-            mat3.push_back(temp);
+            matrix3.push_back(temp);
         }
 
-        for (int i = 0; i < mat3.size(); i++)
+        for (int i = 0; i < matrix3.size(); i++)
         {
-            for (int j = 0; j < mat3[i].size(); j++)
+            for (int j = 0; j < matrix3[i].size(); j++)
             {
-                cout << mat3[i][j] << " ";
-            }
-            cout << endl;
-        }
-        system("pause");
-    }
-
-    void for_transpose(vector<vector<int>> mat)
-    {
-
-        for (int i = 1; i < mat.size(); i++)
-        {
-            for (int j = 0; j < mat[i].size(); j++)
-            {
-                swap(mat[i][j], mat[j][i]);
-            }
-        }
-
-        cout << "The Transpose of the matrix you selected is :" << endl;
-        for (int i = 0; i < mat.size(); i++)
-        {
-            for (int j = 0; j < mat[i].size(); j++)
-            {
-                cout << mat[i][j] << " ";
+                cout << matrix3[i][j] << " ";
             }
             cout << endl;
         }
@@ -95,15 +93,15 @@ public:
 
 int main()
 {
-    Mat obj;
+    Matrix obj;
     int var;
     int x, y;
     cout << "Enter the size of the matrix 1 : ";
     cin >> x >> y;
 
-    vector<vector<int>> mat1;
+    vector<vector<int> > matrix1;
 
-    cout << "Enter the elements for matrix 1 :- " << endl;
+    cout << "Enter the matrix1 elements" << endl;
     for (int i = 0; i < x; i++)
     {
         vector<int> temp;
@@ -112,14 +110,14 @@ int main()
             cin >> var;
             temp.push_back(var);
         }
-        mat1.push_back(temp);
+        matrix1.push_back(temp);
     }
 
     int n, m;
     cout << "Enter the size of the matrix 2 : ";
     cin >> n >> m;
-    vector<vector<int>> mat2;
-    cout << "Enter the elements for matrix 2 :- " << endl;
+    vector<vector<int> > matrix2;
+    cout << "Enter the matrix2 elements" << endl;
     for (int i = 0; i < n; i++)
     {
         vector<int> temp;
@@ -128,33 +126,33 @@ int main()
             cin >> var;
             temp.push_back(var);
         }
-        mat2.push_back(temp);
+        matrix2.push_back(temp);
     }
 
-    unsigned val;
+    unsigned choice;
 
     while (1)
     {
         system("cls");
-        cout << "Type 1 to get the Sum of matrix 1 and matrix 2 " << endl;
-        cout << "Type 2 to get the Product of matrix 1 and matrix 2." << endl;
-        cout << "Type 3 to get the Transpose of matrix 1 and matrix 2." << endl;
-        cout << "Enter any other value to exit." << endl;
-        cin >> val;
+        cout << "Enter 1 to get the Sum of matrix1 and matrix2. \n";
+        cout << "Enter 2 to get the Product of matrix1 and matrix2.  \n";
+        cout << "Enter 3 to get the Transpose of matrix1 and matrix2.  \n";
+        cout << "Enter any other value to exit. \n";
+        cin >> choice;
 
-        switch (val)
+        switch (choice)
         {
         case 1:
             try
             {
                 if (x == n && y == m)
-                    obj.for_sum(mat1, mat2);
+                    obj.sum(matrix1, matrix2);
                 else
                     throw -1;
             }
             catch (int i)
             {
-                cout << "Disobey properties of matrix" << endl << endl;
+                cout << "Disobey properties of matrix\n\n";
                 system("pause");
             }
 
@@ -164,27 +162,23 @@ int main()
             try
             {
                 if (y == n)
-                    obj.for_product(mat1, mat2);
+                    obj.product(matrix1, matrix2);
                 else
                     throw -1;
             }
             catch (int i)
             {
-                cout << "Disobey properties of matrix" << endl << endl;
+                cout << "Disobey properties of matrix\n\n";
             }
 
             break;
 
         case 3:
-            unsigned int key;
-            cout << "Press 1 for matrix 1 and 2 for matrix 2 : ";
-            cin >> key;
-
-            if (key == 1)
-                obj.for_transpose(mat1);
-            else if (key == 2)
-                obj.for_transpose(mat2);
-
+            cout<<"For matrix one:";
+            obj.transpose(matrix1);
+            cout<<"For matrix two:";
+            obj.transpose(matrix2);
+            system("pause");
             break;
 
         default:
