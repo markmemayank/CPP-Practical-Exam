@@ -1,3 +1,8 @@
+/*
+QUESTION
+Create a class Triangle. Include overloaded functions for calculating area. Overload 
+assignment operator and equality operator. 
+*/
 #include <iostream>
 #include <cmath>
 using namespace std;
@@ -27,7 +32,7 @@ public:
     float area(float a, float b, float c)
     {
         float p = (a + b + c) / 2;
-        return sqrt(p * (p - a) * (p - b) * (p - c)); //heron's formula
+        return sqrt(p * (p - a) * (p - b) * (p - c));
     }
 
     // overloaded functions
@@ -53,45 +58,64 @@ public:
 
 int main()
 {
-	Triangle obj;
+	Triangle tri;
 	float a,b,c;
-	char x;
-	cout<<"Calculate area of a triangle \n a. Using base and height \n b. Using sides of triangle \n c. Equilateral Triangle \n\n";
-	cin>>x;
+	int x;
+	cout << "Calculate area of a triangle " << endl;
+    cout << "1:- Using base and height" << endl;
+    cout << "2:- Using sides of triangle" << endl;
+    cout << "3:- Equilateral Triangle" << endl;
+	cin >> x;
     
-    if(x=='a'){
-    	cout<<"Enter the base and height of triangle \n";
-    	cin>>a>>b;
-    	cout<<obj.area(a,b);
-	}else if(x=='b'){
-		cout<<"Enter the sides of triangle \n";
-    	cin>>a>>b>>c;
-    	cout<<obj.area(a,b,c);
-	}else if(x=='c'){
-		cout<<"Enter the side of triangle \n";
-    	cin>>a;
-    	cout<<obj.area(a);
-	}else{
-		cout<<"Invalid option \n";
-	}
-	
-	cout<<"\n\n";
-	
-	float m,n,o;
-	cout<<"Check equality of two triangles. \n Enter the sides of first triangle: \n";
-	cin>>m>>n>>o;
-	Triangle t1(m,n,o);
-	
-	cout<<"Enter the sides of second triangle: \n";
-	cin>>m>>n>>o;
-	Triangle t2(m,n,o);
-	if (t1 == t2)
+    if(x == 1) 
     {
-        cout << "The triangles are equal.\n";
-    }
+    	cout << "Enter the base and height of triangle " << endl;
+    	cin >> a >> b;
+    	cout << tri.area(a,b) << endl;
+	}
+    else if(x == 2)
+    {
+		cout << "Enter the sides of triangle " << endl;
+    	cin >> a >> b >> c;
+    	cout << tri.area(a,b,c) << endl << endl;
+	} 
+    else if(x == 3) 
+    { 
+		cout << "Enter the side of triangle " << endl;
+    	cin >> a;
+    	cout << tri.area(a) << endl;
+	}
     else
     {
-        cout << "The triangles are not equal.\n";
+		cout << "Invalid option " << endl << endl << endl;
+	}
+	
+	float m,n,o,M,N,O;
+	cout << "TO CHECK EQUALITY OF TWO TRIANGLES." << endl;
+    cout << "Enter the sides of first triangle: " << endl;
+	cin >> m >> n >> o;
+	Triangle t1(m,n,o);
+	
+	cout << "Enter the sides of second triangle: " << endl;
+	cin >> M >> N >> O;
+	Triangle t2(M,N,O);
+	if (m=M,N,0)
+    {
+        cout << "The triangles are equal." << endl;
+    }
+    else if (n=M,N,O)
+    {
+        cout << "The triangles are equal." << endl;
+    }
+    
+    else if (O=M,N,O)
+    {
+        cout << "The triangles are equal." << endl;
+    }
+    
+    else
+    {
+        cout << "The triangles are not equal." << endl;
     }
 
     return 0;
